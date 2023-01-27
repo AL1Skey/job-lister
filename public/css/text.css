@@ -1,0 +1,17 @@
+/* LINE HEIGHT */
+.text-line{
+    line-height: 1.6 !important;
+}
+
+.text-line-2{
+    line-height: 2.0 !important;
+}
+
+/* Text OUTLINE */
+
+.text-stroke-white{
+    text-shadow: -1px 1px 0 #f3f3f3,
+    1px 1px 0 #f3f3f3,
+   1px -1px 0 #f3f3f3,
+  -1px -1px 0 #f3f3f3;
+}
