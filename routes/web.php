@@ -109,7 +109,7 @@ Route::get('/search',function( Request $req){
     $query = collect($req->all())->keys()->all()[0];// Print name of query
     $value = $req->query($query);// Print value of query
     // dd(str_contains(strtolower('Front End Dev'),strtolower($value)));
-    $result = Listing::findAndShow( data:$listing, value:$value );
+    $result = Listing::findAndShow( $listing,['title','tags','desc'], $value );
 
     // dd($result);
 

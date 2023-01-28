@@ -4,26 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Throwable;
 
 class Listing extends Model
 {
     use HasFactory;
 
     private $temp;
+    
 
-    public static function findAndShow($data=null,$column='*',$value=null){
-        if(!$data){
+    public static function findAndShow($data=null,$column=null,$value=null){
+        // If data is not present and not countable
+        if(!$data || !is_countable($data)){
             return;
         }
-        if(!count($data)){
-            return ;
-        }
-        
+
         if(!$value){
             return self::all();
         }
+
         $output = self::mergeSearch($data,$column,$value);
+        
         return $output;
     }
 
@@ -34,67 +34,116 @@ class Listing extends Model
     -   Check if any of them is same
     -   Combine
     */
+    
+    //MergeSearch: Divide into smaller part, search data based of column, check if there's contain value, return list of data that has been filtered
     protected static function mergeSearch($data,$column,$value){
-        if(!$data){
-            return $data;
-        }
-        
+        //Check if it's not countable
         if(!is_countable($data)){
-            dd($data);
-            $output = null;
-
-            if( $column='*' ){
-                foreach( $data as $list ){               
-                    $list = strval( $list );
-                    
-                    if(stripos( $list,$value )){
-                        $output = $data;
-                        break;
-                    }
-                }
-            } else {
-                $list = strval( $data[$column] );
-                    if(stripos( $list,$value )){
-                        $output = $data;
-                    }
+            if(!$data){//Check if it's not countable because data value is null
+                return;
             }
+            
+            $output = null;//Establish the output
+
+            // Search by using column to fetch data
+            foreach( $column as $list ){// Use column presented in database as index
+                $list = $data[$list];// Declare value of data from index
+                
+                // See if there's contain searched index
+                if( gettype(stripos( $list,$value )) != 'boolean' ){
+                    $output = $data;
+                    break;
+                }
+            }
+            // } else {
+            //     $list = strval( $data[$column] );
+            //         if(stripos( $list,$value )){
+            //             $output = $data;
+            //         }
+            // }
             return $output;
         }
 
+        // Set size and mid to split data
         $size = count($data)-1;
-        $mid = intdiv($size,2);
-        
+        $mid = intdiv($size,2)-1 > 0 ? intdiv($size,2) : 1;
+
+        // Split data to left and right side
         $left = self::split($data,0,$mid-1);
         $right = self::split($data,$mid,$size);
-
+        
+        // Do merge search until there's one data and is not countable, then verify if there's contain specific value inside the data
         $leftHalf = self::mergeSearch($left,$column,$value);
         $rightHalf = self::mergeSearch($right,$column,$value);
 
+        // Merge the data
         return self::merge($leftHalf,$rightHalf);
     }
+    
+    //Split function: slice array of data from first to last
     protected static function split($data,$first,$last){
+        //if first and last is same, print data from index of both
         if($first == $last){
-            return $data;
-        }
-        $output = [];
-        for( $first; $first<$last; $first++ ){
-            array_push($output,$data[$first]);
+            return $data[$first];
         }
         
-        return $output;
+        $output = [];// Declare empty array
+
+        //Loop from first to last, and add the array
+        for( $first; $first<=$last; $first++ ){
+            array_push($output,$data[$first]);
+        }
+        // if(count($output)==2){
+        // dd($output);}
+        
+        //Return output if the array is not empty, else null
+        return $output ? $output : null;
     }
-    protected static function merge($left,$right){
+
+    //Merge Function: Merge left and right array
+    protected static function merge($left=null,$right=null){
+        
+        //If there's nothing
         if(!$left && !$right){
             return null;
         }
-        if(!$left){
+        
+        //If right is present and left is not
+        else if(!$left){
             return $right;
         }
-        if(!$right){
+        
+        //If left is present and right is not
+        else if(!$right){
             return $left;
         }
-
-        $output = array_merge($left,$right);
+        
+        $output = [];// I DECLARE THE OUTPUT AS ARRAY!!
+        
+        //If both is not array
+        if( !is_countable($left) && !is_countable($right) ){
+            $output = array($left,$right);
+        }
+        
+        //If left is not array
+        else if(!is_countable($left)){
+            array_push($right,$left);
+            $output = $right;
+        }
+        
+        //If right is not array
+        else if(!is_countable($right)){
+            array_push($left,$right);
+            $output = $left;
+            
+        }
+        
+        //If BOTH is array
+        else{
+            $output = array_merge($left,$right);
+        }
+        
+        // Return the merged array
         return $output;
     }
 }
