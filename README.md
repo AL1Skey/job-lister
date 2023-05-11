@@ -17,9 +17,9 @@ PostgreSQL:
 SQLite:
 > ;extension=pdo_sqlite
 
-## 1. CREATE .env on this project directory and configure according to your preference databases
+#### 1. CREATE .env on this project directory and configure according to your preference databases
 
-#### Ex:
+###### Ex:
 ```
     DB_CONNECTION=mysql
     DB_HOST=localhost
@@ -29,15 +29,15 @@ SQLite:
     DB_PASSWORD=artisan
 ```
 
-## 2. Create Database on your SQL according to your env file 
+#### 2. Create Database on your SQL according to your env file 
 
-## 3. run php artisan migrate:install 
+#### 3. run php artisan migrate:install 
 
-## 4. run php artisan migrate:refresh --seed
+#### 4. run php artisan migrate:refresh --seed
 
-## 5. run php artisan key:generate
+#### 5. run php artisan key:generate
 
-## 6. run php artisan serve
+#### 6. run php artisan serve
 
 # Workfile/folder according to most used
 
@@ -47,3 +47,7 @@ SQLite:
 4. /database/[.., factories, seeders, migrations]
 5. /config/database.php
 6. /app/Models/*
+
+# Thing need to be fix
+### 1. Search feature
+bug: when used, some list that not related to keyword is being shown
