@@ -17,7 +17,7 @@ PostgreSQL:
 SQLite:
 > ;extension=pdo_sqlite
 
-1. CREATE .env on this project directory and configure according to your preference databases
+## 1. CREATE .env on this project directory and configure according to your preference databases
 
 #### Ex:
 ```
@@ -29,15 +29,15 @@ SQLite:
     DB_PASSWORD=artisan
 ```
 
-2. Create Database on your SQL according to your env file 
+## 2. Create Database on your SQL according to your env file 
 
-3. run php artisan migrate:install 
+## 3. run php artisan migrate:install 
 
-4. run php artisan migrate:refresh --seed
+## 4. run php artisan migrate:refresh --seed
 
-5. run php artisan key:generate
+## 5. run php artisan key:generate
 
-6. run php artisan serve
+## 6. run php artisan serve
 
 # Workfile/folder according to most used
 
