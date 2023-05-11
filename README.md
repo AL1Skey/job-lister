@@ -47,7 +47,3 @@ SQLite:
 4. /database/[.., factories, seeders, migrations]
 5. /config/database.php
 6. /app/Models/*
-
-# Thing need to be fix
-### 1. Search feature
-bug: when used, some list that not related to keyword is being shown
