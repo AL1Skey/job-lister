@@ -4,7 +4,7 @@ This Code are for relive my memories of what I do when I follow tutorial on yout
 
 # HOW TO USE (Testing Purpose):
 
-0. Instal php, composer, and databases programming language as your choice. 
+## 0. Instal php, composer, and databases programming language as your choice. 
     After that, open php.ini and remove ";" at ;extension=sql_your_choice
 
 ### Ex:
