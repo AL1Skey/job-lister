@@ -105,9 +105,23 @@ Route::get('/index', function( Request $req){
 });
 
 Route::get('/search',function( Request $req){
+    // Get all the database
+    // Expected output: 
+    /*
+    Illuminate\Database\Eloquent\Collection {#1282 ▼ // routes\web.php:115
+    items: array:47 [▶]
+    escapeWhenCastingToString: false
+    }
+    */
     $listing = Listing::all();
-    $query = collect($req->all())->keys()->all()[0];// Print name of query
-    $value = $req->query($query);// Print value of query
+
+    // Print name of query
+    // Expected output: search
+    $query = collect($req->all())->keys()->all()[0];
+
+    // Print value of query
+    // Expected output: input value on search bar (like django, front, asdhfsdhf, etc.)
+    $value = $req->query($query);
     // dd(str_contains(strtolower('Front End Dev'),strtolower($value)));
     $result = Listing::findAndShow( $listing,['title','tags','desc'], $value );
 
