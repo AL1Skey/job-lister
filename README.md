@@ -2,6 +2,21 @@
 
 This Code are for relive my memories of what I do when I follow tutorial on youtube
 
+# Docker Build Laravel:
+    . run composer update
+    . set DB_HOSTNAME=host.docker.internal
+    . add this to env file :
+        WWWGROUP=1000
+        WWWUSER=1000
+    . run php artisan sail:install
+    . choose database on prompt
+    . run docker compose up
+    . run php migrate:install && php migrate:refresh --seed
+    . https://localhost.com
+    
+    To Be Added, for time being use this link:
+    - https://blog.christian-schou.dk/run-postgresql-database-using-docker-compose/
+
 # HOW TO USE (Testing Purpose):
 
 ## 0. Instal php, composer, and databases programming language as your choice. 

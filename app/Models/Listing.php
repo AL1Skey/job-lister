@@ -39,28 +39,42 @@ class Listing extends Model
     protected static function mergeSearch($data,$column,$value){
         //Check if it's not countable
         if(!is_countable($data)){
-            if(!$data){//Check if it's not countable because data value is null
+            if(!$data || !$column){//Check if it's not countable because data value is null
                 return;
             }
             
             $output = null;//Establish the output
+            
+            #If the column value are more than 1
+            if(is_countable($column)){
+                // Search by using column to fetch data
+                foreach( $column as $lists ){// Use column presented in database as index
+                    $list = $data[$lists];// Declare value of data from index
 
-            // Search by using column to fetch data
-            foreach( $column as $list ){// Use column presented in database as index
-                $list = $data[$list];// Declare value of data from index
-                
+                    // See if there's contain searched index
+                    if( gettype(stripos( $list,$value )) != 'boolean' ){
+                        $output = $data;
+                        break;
+                    }
+                }
+                // } else {
+                //     $list = strval( $data[$column] );
+                //         if(stripos( $list,$value )){
+                //             $output = $data;
+                //         }
+                // }
+            }
+
+            #If there's only single column
+            else{
+                $list = $data[$column];// Declare value of data from index
+
                 // See if there's contain searched index
                 if( gettype(stripos( $list,$value )) != 'boolean' ){
                     $output = $data;
-                    break;
                 }
             }
-            // } else {
-            //     $list = strval( $data[$column] );
-            //         if(stripos( $list,$value )){
-            //             $output = $data;
-            //         }
-            // }
+
             return $output;
         }
 

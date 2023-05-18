@@ -90,6 +90,7 @@ Route::get('/post/{post}', function( Listing $post ){
 Route::get('/index', function( Request $req){
     $listing = Listing::all();
     $query = collect($req->all())->keys()->all()[0];// Print name of query
+    
     $value = $req->query($query);// Print value of query
 
     $result = Listing::findAndShow($listing,$query,$value);
