@@ -1,6 +1,13 @@
 # What is this:
 
-This Code are for relive my memories of what I do when I follow tutorial on youtube
+Job lister are Laravel-based Web Application that show the Auto-generated list of job
+
+# Feature:
+- Search based keywords
+- Search based tags
+
+# In-Depth of Search Function:
+This function use merge-search algorithm to perform search based by token from url[search & tags]
 
 # HOW TO USE (Testing Purpose):
 
