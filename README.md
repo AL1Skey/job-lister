@@ -9,6 +9,31 @@ Job lister are Laravel-based Web Application that show the Auto-generated list o
 # In-Depth of Search Function:
 This function use merge-search algorithm to perform search based by token from url[search & tags]
 
+# Rundown on How to Use Laravel
+## 0. Instal php, composer, and databases programming language as your choice. 
+    After that, open php.ini and remove ";" at ;extension=fileinfo and ;extension=sql_your_choice
+
+### Ex:
+MySQL:
+> ;extension=pdo_mysql
+    
+PostgreSQL:
+> ;extension=pdo_pgsql
+
+SQLite:
+> ;extension=pdo_sqlite
+
+### 0.5. Install Laravel and run this command to create laravel project
+```cmd
+composer require laravel/installer
+laravel new [name-of-your-project]
+```
+### -. If you want to create controller, run this command
+```cmd
+php artisan make:controller [name-of-controller]
+```
+
+
 # HOW TO USE (Testing Purpose):
 
 ## 0. Instal php, composer, and databases programming language as your choice. 
