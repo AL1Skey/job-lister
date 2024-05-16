@@ -24,6 +24,12 @@ PostgreSQL:
 SQLite:
 > ;extension=pdo_sqlite
 
+### 0.5. Install Laravel and run this command to create laravel project
+```cmd
+composer require laravel/installer
+laravel new [name-of-your-project]
+```
+
 #### 1. CREATE .env on this project directory and configure according to your preference databases
 
 ###### Ex:
