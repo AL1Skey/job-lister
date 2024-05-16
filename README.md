@@ -12,7 +12,7 @@ This function use merge-search algorithm to perform search based by token from u
 # HOW TO USE (Testing Purpose):
 
 ## 0. Instal php, composer, and databases programming language as your choice. 
-    After that, open php.ini and remove ";" at ;extension=sql_your_choice
+    After that, open php.ini and remove ";" at ;extension=fileinfo and ;extension=sql_your_choice
 
 ### Ex:
 MySQL:
